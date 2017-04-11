@@ -69,6 +69,9 @@ Verifier.prototype.verify = function () {
 	this._instance = cp.spawn(file, args, opts);
 
 	this._instance.stdout.setEncoding('UTF-8');
+	console.log("------------");
+	console.log(this._instance.stdout.getEncoding());
+	console.log(this._instance.stdout.encoding);
 	this._instance.stdout.on('data', outputHandler);
 	this._instance.stderr.setEncoding('UTF-8');
 	this._instance.stderr.on('data', outputHandler);
