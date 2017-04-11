@@ -70,14 +70,15 @@ Verifier.prototype.verify = function () {
 
 	this._instance.stdout.setEncoding('UTF-8');
 	console.log("------------");
-	console.log(this._instance.stdout);
-	console.log(this._instance.stdout.encoding);
 	this._instance.stdout.on('data', outputHandler);
 	this._instance.stderr.setEncoding('UTF-8');
 	this._instance.stderr.on('data', outputHandler);
 	this._instance.on('error', logger.error.bind(logger));
 
 	this._instance.once('close', function (code) {
+		console.log('close method');
+		console.log(code);
+		console.log(output);
 		code == 0 ? deferred.resolve(output) : deferred.reject(new Error(output));
 	});
 
